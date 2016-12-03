@@ -1,14 +1,12 @@
 Adafruit 8x8 LED Matrix用ライブラリ for GR-CITRUS/mruby
 ====
 
-Overview
+# Overview
 
-GR-CITRUS/mruby用でAdafruit 8x8 LED Matrixを使うためのライブラリです。
-require等の組み込みがない場合は、自分のプログラムのどこかにコピペすればいいんじゃないでしょうか。
+GR-CITRUSでAdafruit 8x8 LED Matrixを使うためのmruby用ライブラリです。
+
 
 ## Description
-
-## Demo
 
 ## Requirement
 
@@ -24,7 +22,7 @@ Matrix_8x8
 
 #表示モードを設定する
 #set_blink_rate(mode)
-   mode : 0=off, 1=1秒
+   mode : 0=off, 1=1秒...
 
 -明るさを1〜15で設定する
 #set_brightness(brightness)
@@ -32,6 +30,13 @@ Matrix_8x8
 
 -表示する内容をArrayでまとめてバッファに設定する
 #buffer=(ary)
+   ary は
+   [
+     "11111111",
+     "00000000",...
+   ]
+   ...のように1行ごと 文字列で 点灯する部分を1, 消灯する部分を0で指定します
+
 
 -バッファに設定されている内容で描画する
 #write_display
@@ -51,12 +56,16 @@ Matrix_8x8
 
 
 ## Install
+require等の組み込みがない場合は、自分のプログラムのどこかにコピペすればいいんじゃないでしょうか。
+I2C接続で Wire1 を使う場合は、pin0,1にSDA/SCL接続します。
+アドレスは標準で0x70想定ですが、0x71等に変更している場合は下記のように設定します。
 
-## Contribution
+```
+matrix = Matrix_8x8.new( {:port=>1, :addr=>0x71} )
+```
 
-## Licence
 
 
 ## Author
 
-[tcnksm](https://github.com/paichi81)
+[paichi81](https://github.com/paichi81)
